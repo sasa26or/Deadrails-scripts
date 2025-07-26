@@ -1,8 +1,6 @@
--- GUI Aimant à Bons - Dead Rails (by ChatGPT)
+-- GUI Aimant à Treasury Bonds - Dead Rails (by ChatGPT)
 local joueur = game.Players.LocalPlayer
-local coreGui = game:GetService("StarterGui")
 
--- Création de l'interface
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "MagnetGUI"
 screenGui.ResetOnSpawn = false
@@ -18,7 +16,6 @@ bouton.Font = Enum.Font.SourceSansBold
 bouton.TextSize = 20
 bouton.Parent = screenGui
 
--- Fonction d’aimant
 local function activerMagnet()
     local corps = joueur.Character and joueur.Character:FindFirstChild("HumanoidRootPart")
     if not corps then return end
@@ -28,7 +25,7 @@ local function activerMagnet()
     for _, obj in pairs(workspace:GetDescendants()) do
         if obj:IsA("Part") or obj:IsA("MeshPart") then
             local nom = obj.Name:lower()
-            if nom:find("bond") or nom:find("obligation") then
+            if nom:find("treasury bond") then
                 obj.CFrame = corps.CFrame + Vector3.new(0, 3, 0)
                 count += 1
             end
@@ -40,5 +37,4 @@ local function activerMagnet()
     bouton.Text = "🧲 Activer l’aimant"
 end
 
--- Quand tu cliques
 bouton.MouseButton1Click:Connect(activerMagnet)
